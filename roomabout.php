@@ -1,11 +1,13 @@
 <?php
-
-include ("partials/_header.php");
+ob_start();
+include("partials/_header.php");
 
 // Veritabanı bağlantısını başlat
 $conn = mysqli_connect("localhost", "root", "", "shushaOtel");
 
-$id = intval($_GET['id']);
+$id = isset($_GET['id']) ? intval($_GET['id']) : null;
+
+
 $query = mysqli_query($conn, 'SELECT 
 room.id as id,
 roomType.type as name,
@@ -15,6 +17,8 @@ room.bed as bed,
 room.bath as bath,
 room.wifi as wifi
 FROM room,roomType WHERE room.typeID=roomType.id AND room.id="' . $id . '"');
+
+
 $room = mysqli_fetch_assoc($query);
 
 //comment Form
@@ -52,10 +56,8 @@ if (isset($_POST['commentBtn'])) {
 
         if ($query = mysqli_query($conn, $sql)) {
             echo '<div class="alert alert-success text-center">Şerhiniz Uğurla Elave Olundu</div>';
-            header("location: #");
         } else {
             echo '<div class="alert alert-danger">Xeta!...</div>';
-            header("location: #");
         }
     }
 }
@@ -95,13 +97,13 @@ if (isset($_POST['commentBtn'])) {
 
     </div>
             <!-- Testimonial Start -->
-<?php include ("partials/_testimonial.php"); ?>
+<?php include("partials/_testimonial.php"); ?>
         <!-- Testimonial End -->
 </div>
 
 <?php
 
-include ("partials/_newsletter.php");
-include ("partials/_footer.php");
+include("partials/_newsletter.php");
+include("partials/_footer.php");
 mysqli_close($conn); // Veritabanı bağlantısını kapat
 ?>

@@ -55,7 +55,7 @@ $commentCount=mysqli_num_rows($comment_select);
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-primary py-3 px-5 mt-2" href="">Daha çox </a>
+                        <a class="btn btn-primary py-3 px-5 mt-2" href="about.php">Daha çox </a>
                     </div>
                     <div class="col-lg-6">
                         <div class="row g-3">
